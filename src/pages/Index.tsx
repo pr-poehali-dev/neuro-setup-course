@@ -16,24 +16,24 @@ const GROUP_IMG =
 
 const reviews = [
   {
-    name: 'Марина К.',
-    role: 'Психолог, Москва',
-    text: 'После курса я впервые почувствовала, что работаю с причиной, а не следствием. Клиенты отмечают глубокие изменения уже после первой сессии. Это совершенно другой уровень работы.',
+    screenshot: 'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/bucket/79c6acf4-f814-4e9d-9723-c756fb6ca3fb.jpeg',
+    text: 'Я только закончила обучение и вот-вот получу сертификат, а уже сколько всего! За время обучения я провела примерно 10 диагностик, 2 одиночных диагностики, сопровождение, а в деньгах это около 50 тыс. Переборола свои страхи и начала проявляться, вести канал. Благодарю тебя, дорогая, за билетик в лучшую жизнь!',
+    highlight: '~50 000 ₽ уже во время обучения',
   },
   {
-    name: 'Светлана Р.',
-    role: 'Коуч, Санкт-Петербург',
-    text: 'Ирина — уникальный педагог. Объясняет сложные вещи просто, всегда на связи, разбирает реальные кейсы. За 8 недель я получила инструмент, который уже приносит доход.',
+    screenshot: 'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/bucket/1fbad7af-27cd-4b2c-a875-d94cfb5762e4.jpeg',
+    text: 'Ирочка, я тебя благодарю за обучение. Просто бомба! Всё по полочкам, всё чётко. Где недопонимает ученик, учитель обязательно направит и поможет. И вот ещё две недели до конца обучения, а у меня уже клиенты. Первый появился в самом начале и сразу сопровождение взял.',
+    highlight: 'Клиенты появились за 2 недели до конца курса',
   },
   {
-    name: 'Елена В.',
-    role: 'Участница курса, Краснодар',
-    text: 'Пришла без опыта в психологии — ушла с тремя сертификатами и пониманием, как помогать людям. Метод работает, я проверила на себе и на первых клиентах.',
+    screenshot: 'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/bucket/71044bf8-8f74-4ba5-b4b4-63b91d909517.jpeg',
+    text: 'Только начали — а уже результат! Он ревел там не по-детски, но постаралась довести до того момента, когда ему станет легко. Тему с отцом разбирали, ему было холодно, он вспомнил ситуацию. Я просто безумно счастлива. Понятно, что путь ещё будет долгий, но он интересный и классный.',
+    highlight: 'Результат с первой же сессии',
   },
   {
-    name: 'Ольга М.',
-    role: 'HR-специалист, Екатеринбург',
-    text: 'Хотела разобраться в себе, а в итоге открыла новую профессию. Групповые расстановки, где я была заместителем — это незабываемый опыт. Очень рекомендую.',
+    screenshot: 'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/bucket/8f91cd7a-85a3-401a-9c5d-fa99c9f06d41.jpeg',
+    text: 'Я тебе очень благодарна за твоё дело, за то что ты делаешь — это очень ценно для всех людей. В первую очередь ты научила меня быть благодарной этому миру. Я научилась видеть, как же круто я живу, какой же прекрасный у меня муж, какая у меня работа чудесная. Это всё благодаря тебе произошла моя трансформация.',
+    highlight: 'Глубокая личная трансформация',
   },
 ];
 
@@ -394,22 +394,32 @@ const Index = () => {
           </div>
 
           {/* Карточки отзывов */}
-          <div className="grid md:grid-cols-2 gap-4">
-            {reviews.map((r) => (
-              <div key={r.name} className="rounded-sm border border-border bg-card p-7 flex flex-col gap-4 hover:border-primary/40 transition-colors">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} style={{ color: GOLD }} className="text-sm">★</span>
-                  ))}
+          <div className="grid md:grid-cols-2 gap-5">
+            {reviews.map((r, i) => (
+              <div key={i} className="rounded-sm border border-border bg-card flex flex-col hover:border-primary/40 transition-colors overflow-hidden">
+                {/* Скриншот переписки */}
+                <div className="relative overflow-hidden border-b border-border" style={{ maxHeight: '260px' }}>
+                  <img
+                    src={r.screenshot}
+                    alt="Отзыв участника обучения"
+                    className="w-full object-cover object-top"
+                    style={{ maxHeight: '260px' }}
+                  />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(4,14,8,0.85))' }} />
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">«{r.text}»</p>
-                <div className="pt-4 border-t border-border flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary/20 border border-primary/30 grid place-items-center shrink-0">
-                    <Icon name="User" size={18} className="text-primary" />
+                {/* Текст */}
+                <div className="p-6 flex flex-col gap-4 flex-1">
+                  {/* Highlight */}
+                  <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-sm self-start"
+                    style={{ background: GOLD + '18', color: GOLD, border: `1px solid ${GOLD}44` }}>
+                    <Icon name="TrendingUp" size={12} />
+                    {r.highlight}
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold">{r.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{r.role}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">«{r.text}»</p>
+                  <div className="flex gap-1 pt-2">
+                    {[...Array(5)].map((_, j) => (
+                      <span key={j} style={{ color: GOLD }} className="text-sm">★</span>
+                    ))}
                   </div>
                 </div>
               </div>
