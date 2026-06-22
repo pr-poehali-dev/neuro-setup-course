@@ -477,9 +477,8 @@ const Index = () => {
             <div className="mt-10 space-y-5">
               {[
                 { icon: 'Users', label: 'ВКонтакте', value: 'vk.com/abramova_garmony', href: 'https://vk.ru/abramova_garmony' },
-                { icon: 'Send', label: 'Telegram', value: '@neuro_rasstanovki', href: '#' },
-                { icon: 'Mail', label: 'Email', value: 'info@neuro-method.ru', href: '#' },
-                { icon: 'Phone', label: 'Телефон', value: '+7 (900) 000-00-00', href: '#' },
+                { icon: 'Mail', label: 'Email', value: 'irina-kaunova@ya.ru', href: 'mailto:irina-kaunova@ya.ru' },
+                { icon: 'Phone', label: 'Телефон', value: '+7 (951) 140-83-63', href: 'tel:+79511408363' },
               ].map((c) => (
                 <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-4 group">
