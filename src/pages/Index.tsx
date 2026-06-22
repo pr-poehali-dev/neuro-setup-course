@@ -8,8 +8,34 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-const HERO_IMG =
-  'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/files/0d920530-ef9a-40a6-bafd-0d2e9edd8a3e.jpg';
+const IRINA_IMG =
+  'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/bucket/1bbd6865-d394-4b40-9d7a-45f459019409.jpeg';
+
+const GROUP_IMG =
+  'https://cdn.poehali.dev/projects/693d7147-7207-4068-8ae7-8a8343d2d467/bucket/7f72059d-b611-4db5-a8eb-e626222ec86d.jpeg';
+
+const reviews = [
+  {
+    name: 'Марина К.',
+    role: 'Психолог, Москва',
+    text: 'После курса я впервые почувствовала, что работаю с причиной, а не следствием. Клиенты отмечают глубокие изменения уже после первой сессии. Это совершенно другой уровень работы.',
+  },
+  {
+    name: 'Светлана Р.',
+    role: 'Коуч, Санкт-Петербург',
+    text: 'Ирина — уникальный педагог. Объясняет сложные вещи просто, всегда на связи, разбирает реальные кейсы. За 8 недель я получила инструмент, который уже приносит доход.',
+  },
+  {
+    name: 'Елена В.',
+    role: 'Участница курса, Краснодар',
+    text: 'Пришла без опыта в психологии — ушла с тремя сертификатами и пониманием, как помогать людям. Метод работает, я проверила на себе и на первых клиентах.',
+  },
+  {
+    name: 'Ольга М.',
+    role: 'HR-специалист, Екатеринбург',
+    text: 'Хотела разобраться в себе, а в итоге открыла новую профессию. Групповые расстановки, где я была заместителем — это незабываемый опыт. Очень рекомендую.',
+  },
+];
 
 const weeks = [
   {
@@ -216,22 +242,32 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Hero image */}
-          <div className="relative animate-fade-up" style={{ animationDelay: '0.25s' }}>
-            <div className="absolute inset-4 rounded-2xl blur-2xl opacity-30" style={{ background: 'hsl(148 45% 35%)' }} />
-            <div className="relative rounded-2xl overflow-hidden border border-border shadow-2xl animate-float-slow">
-              <img
-                src={HERO_IMG}
-                alt="Нейро-расстановки — метод работы с подсознанием"
-                className="w-full object-cover"
-              />
-              {/* Overlay caption */}
-              <div className="absolute bottom-0 left-0 right-0 px-6 py-5"
-                style={{ background: 'linear-gradient(to top, rgba(5,18,10,0.92), transparent)' }}>
-                <p className="text-xs uppercase tracking-widest font-semibold" style={{ color: GOLD }}>
-                  Системные расстановки
-                </p>
-                <p className="text-sm text-foreground/80 mt-0.5">Работа с нейронными моделями и символами</p>
+          {/* Hero image — портрет Ирины */}
+          <div className="relative animate-fade-up flex justify-center" style={{ animationDelay: '0.25s' }}>
+            {/* Glow behind */}
+            <div className="absolute inset-8 blur-3xl opacity-25 rounded-full"
+              style={{ background: 'hsl(148 45% 35%)' }} />
+            {/* Frame */}
+            <div className="relative w-full max-w-sm">
+              {/* Corner marks */}
+              <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 z-10" style={{ borderColor: GOLD }} />
+              <div className="absolute -top-3 -right-3 w-10 h-10 border-t-2 border-r-2 z-10" style={{ borderColor: GOLD }} />
+              <div className="absolute -bottom-3 -left-3 w-10 h-10 border-b-2 border-l-2 z-10" style={{ borderColor: GOLD }} />
+              <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 z-10" style={{ borderColor: GOLD }} />
+              <div className="overflow-hidden rounded-sm border border-border shadow-2xl animate-float-slow">
+                <img
+                  src={IRINA_IMG}
+                  alt="Ирина Абрамова — автор метода нейро-расстановок"
+                  className="w-full object-cover object-top"
+                  style={{ maxHeight: '560px' }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 px-5 py-4"
+                  style={{ background: 'linear-gradient(to top, rgba(4,14,8,0.95) 60%, transparent)' }}>
+                  <p className="font-display font-bold text-base text-foreground">Ирина Абрамова</p>
+                  <p className="text-xs mt-0.5 uppercase tracking-widest" style={{ color: GOLD }}>
+                    Автор метода · Наставник
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -331,6 +367,59 @@ const Index = () => {
           </Accordion>
         </div>
       </section>
+
+      {/* REVIEWS */}
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <div className="mb-12">
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: GOLD }}>Отзывы</p>
+            <h2 className="mt-3 font-display font-extrabold text-3xl md:text-4xl tracking-tight">
+              Что говорят участники обучения
+            </h2>
+          </div>
+
+          {/* Групповое фото */}
+          <div className="relative rounded-sm overflow-hidden border border-border mb-10 shadow-lg">
+            <img
+              src={GROUP_IMG}
+              alt="Участники тренинга нейро-расстановок Ирины Абрамовой"
+              className="w-full object-cover object-center"
+              style={{ maxHeight: '420px' }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 px-6 py-5"
+              style={{ background: 'linear-gradient(to top, rgba(4,14,8,0.90) 50%, transparent)' }}>
+              <p className="text-sm font-semibold text-foreground/90">Участники расстановочного тренинга</p>
+              <p className="text-xs mt-0.5 text-muted-foreground">Живые встречи и практические занятия в группе</p>
+            </div>
+          </div>
+
+          {/* Карточки отзывов */}
+          <div className="grid md:grid-cols-2 gap-4">
+            {reviews.map((r) => (
+              <div key={r.name} className="rounded-sm border border-border bg-card p-7 flex flex-col gap-4 hover:border-primary/40 transition-colors">
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} style={{ color: GOLD }} className="text-sm">★</span>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">«{r.text}»</p>
+                <div className="pt-4 border-t border-border flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-primary/20 border border-primary/30 grid place-items-center shrink-0">
+                    <Icon name="User" size={18} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold">{r.name}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{r.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="gold-line opacity-40" />
 
       {/* CTA BANNER */}
       <section className="py-20 md:py-28">
