@@ -312,19 +312,20 @@ const Index = () => {
             </p>
             <div className="mt-8 space-y-4">
               {[
-                { icon: 'Send', label: 'Telegram', value: '@neuro_rasstanovki' },
-                { icon: 'Mail', label: 'Email', value: 'info@neuro-method.ru' },
-                { icon: 'Phone', label: 'Телефон', value: '+7 (900) 000-00-00' },
+                { icon: 'Users', label: 'ВКонтакте', value: 'vk.com/abramova_garmony', href: 'https://vk.ru/abramova_garmony' },
+                { icon: 'Send', label: 'Telegram', value: '@neuro_rasstanovki', href: '#' },
+                { icon: 'Mail', label: 'Email', value: 'info@neuro-method.ru', href: '#' },
+                { icon: 'Phone', label: 'Телефон', value: '+7 (900) 000-00-00', href: '#' },
               ].map((c) => (
-                <div key={c.label} className="flex items-center gap-4">
-                  <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent text-primary">
+                <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                  <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                     <Icon name={c.icon} size={20} />
                   </span>
                   <div>
                     <div className="text-sm text-muted-foreground">{c.label}</div>
-                    <div className="font-semibold">{c.value}</div>
+                    <div className="font-semibold group-hover:text-primary transition-colors">{c.value}</div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -371,6 +372,9 @@ const Index = () => {
             <Icon name="Brain" size={18} className="text-primary" />
             Нейро-расстановки
           </div>
+          <a href="https://vk.ru/abramova_garmony" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-primary transition-colors">
+            <Icon name="Users" size={16} /> Мы ВКонтакте
+          </a>
           <span>© 2026 Метод Ирины Абрамовой. Все права защищены.</span>
         </div>
       </footer>
