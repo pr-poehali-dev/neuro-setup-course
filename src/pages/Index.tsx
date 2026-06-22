@@ -96,6 +96,8 @@ const benefits = [
   { icon: 'Sparkles', text: 'Помощь в создании своего продукта и старте практики' },
 ];
 
+const GOLD = '#c9a84c';
+
 const Index = () => {
   const [navOpen, setNavOpen] = useState(false);
 
@@ -106,161 +108,219 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+
       {/* NAV */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
         <div className="container flex items-center justify-between h-16">
           <button
             onClick={() => scrollTo('hero')}
-            className="flex items-center gap-2 font-display font-extrabold text-lg tracking-tight"
+            className="flex items-center gap-3 font-display font-extrabold text-lg tracking-tight"
           >
-            <span className="grid place-items-center w-9 h-9 rounded-xl bg-primary text-primary-foreground">
-              <Icon name="Brain" size={20} />
+            <span className="grid place-items-center w-9 h-9 rounded-lg border border-primary/40 bg-primary/10 text-primary">
+              <Icon name="Brain" size={19} />
             </span>
-            Нейро<span className="text-primary">расстановки</span>
+            <span className="text-foreground">Нейро<span style={{ color: GOLD }}>расстановки</span></span>
           </button>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-            <button onClick={() => scrollTo('about')} className="hover:text-primary transition-colors">Метод</button>
-            <button onClick={() => scrollTo('program')} className="hover:text-primary transition-colors">Программа</button>
-            <button onClick={() => scrollTo('contacts')} className="hover:text-primary transition-colors">Контакты</button>
+            <button onClick={() => scrollTo('about')} className="hover:text-foreground transition-colors">Метод</button>
+            <button onClick={() => scrollTo('program')} className="hover:text-foreground transition-colors">Программа</button>
+            <button onClick={() => scrollTo('contacts')} className="hover:text-foreground transition-colors">Контакты</button>
           </nav>
-          <Button onClick={() => scrollTo('contacts')} className="hidden md:inline-flex rounded-full px-6">
+          <Button
+            onClick={() => scrollTo('contacts')}
+            className="hidden md:inline-flex rounded-sm px-6 text-sm tracking-wide"
+            style={{ background: GOLD, color: '#1a1a1a', fontWeight: 700 }}
+          >
             Записаться
           </Button>
-          <button className="md:hidden" onClick={() => setNavOpen((v) => !v)}>
-            <Icon name={navOpen ? 'X' : 'Menu'} size={26} />
+          <button className="md:hidden text-foreground" onClick={() => setNavOpen((v) => !v)}>
+            <Icon name={navOpen ? 'X' : 'Menu'} size={24} />
           </button>
         </div>
         {navOpen && (
-          <div className="md:hidden border-t border-border bg-white px-6 py-4 flex flex-col gap-4 text-sm font-medium animate-fade-up">
-            <button onClick={() => scrollTo('about')} className="text-left">Метод</button>
-            <button onClick={() => scrollTo('program')} className="text-left">Программа</button>
-            <button onClick={() => scrollTo('contacts')} className="text-left">Контакты</button>
-            <Button onClick={() => scrollTo('contacts')} className="rounded-full">Записаться</Button>
+          <div className="md:hidden border-t border-border bg-background px-6 py-5 flex flex-col gap-4 text-sm font-medium animate-fade-up">
+            <button onClick={() => scrollTo('about')} className="text-left text-foreground">Метод</button>
+            <button onClick={() => scrollTo('program')} className="text-left text-foreground">Программа</button>
+            <button onClick={() => scrollTo('contacts')} className="text-left text-foreground">Контакты</button>
+            <Button onClick={() => scrollTo('contacts')} className="rounded-sm" style={{ background: GOLD, color: '#1a1a1a', fontWeight: 700 }}>
+              Записаться
+            </Button>
           </div>
         )}
       </header>
 
       {/* HERO */}
-      <section id="hero" className="relative grid-bg pt-28 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[36rem] h-[36rem] rounded-full bg-primary/10 blur-3xl" />
-        <div className="container relative grid md:grid-cols-2 gap-12 items-center">
+      <section id="hero" className="relative grid-bg pt-28 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-[40rem] h-[40rem] rounded-full opacity-20 blur-3xl"
+          style={{ background: 'radial-gradient(circle, hsl(148 45% 35%), transparent 70%)' }} />
+        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-10 blur-3xl"
+          style={{ background: `radial-gradient(circle, ${GOLD}, transparent 70%)` }} />
+
+        <div className="container relative grid md:grid-cols-2 gap-14 items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-accent text-accent-foreground px-4 py-1.5 text-sm font-medium animate-fade-up">
-              <Icon name="Sparkles" size={16} /> Метод Ирины Абрамовой
-            </span>
-            <h1 className="mt-6 font-display font-extrabold tracking-tight text-4xl md:text-6xl leading-[1.05] animate-fade-up" style={{ animationDelay: '0.1s' }}>
-              Расстановочный<br /> тренинг на <span className="text-primary">нейронах</span>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 border px-4 py-2 text-xs font-semibold tracking-widest uppercase animate-fade-up"
+              style={{ borderColor: GOLD + '55', color: GOLD, background: GOLD + '12' }}>
+              <Icon name="Shield" size={13} />
+              Метод Ирины Абрамовой
+            </div>
+
+            <h1
+              className="mt-7 font-display font-extrabold tracking-tight text-4xl md:text-[3.4rem] leading-[1.06] animate-fade-up"
+              style={{ animationDelay: '0.1s' }}
+            >
+              Расстановочный<br />
+              тренинг на{' '}
+              <span className="relative inline-block">
+                <span className="text-primary">нейронах</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-[2px]" style={{ background: GOLD }} />
+              </span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-md animate-fade-up" style={{ animationDelay: '0.2s' }}>
-              Меняем подсознание в лучшую сторону: гармонизируем финансы, здоровье,
-              отношения и реализацию способностей. За 8 недель вы освоите метод и сразу начнёте практику.
+
+            <p className="mt-7 text-base leading-relaxed text-muted-foreground max-w-md animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              Профессиональное обучение методу работы с подсознанием.
+              За 8 недель вы освоите технику нейро-расстановок и начнёте
+              вести индивидуальные сессии с клиентами.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-              <Button onClick={() => scrollTo('contacts')} size="lg" className="rounded-full px-8 text-base glow-teal hover-scale">
+
+            <div className="mt-9 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              <button
+                onClick={() => scrollTo('contacts')}
+                className="px-8 py-3.5 text-sm font-bold tracking-wide rounded-sm transition-opacity hover:opacity-90 glow-green"
+                style={{ background: GOLD, color: '#1a1a1a' }}
+              >
                 Записаться на обучение
-              </Button>
-              <Button onClick={() => scrollTo('program')} size="lg" variant="outline" className="rounded-full px-8 text-base">
+              </button>
+              <Button
+                onClick={() => scrollTo('program')}
+                variant="outline"
+                className="rounded-sm px-8 text-sm border-border hover:bg-secondary hover:text-foreground"
+              >
                 Смотреть программу
               </Button>
             </div>
-            <div className="mt-10 flex gap-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+
+            {/* Stats */}
+            <div className="mt-12 pt-8 border-t border-border flex gap-10 animate-fade-up" style={{ animationDelay: '0.4s' }}>
               {[
-                ['8', 'недель'],
+                ['8', 'недель обучения'],
                 ['3', 'сертификата'],
                 ['2', 'года доступа'],
               ].map(([num, label]) => (
                 <div key={label}>
-                  <div className="font-display font-extrabold text-3xl text-primary">{num}</div>
-                  <div className="text-sm text-muted-foreground">{label}</div>
+                  <div className="font-display font-extrabold text-3xl" style={{ color: GOLD }}>{num}</div>
+                  <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{label}</div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Hero image */}
           <div className="relative animate-fade-up" style={{ animationDelay: '0.25s' }}>
-            <div className="absolute inset-0 rounded-[2rem] bg-primary/20 blur-2xl scale-95" />
-            <img
-              src={HERO_IMG}
-              alt="Нейро-расстановки — родовая и кармическая система"
-              className="relative rounded-[2rem] w-full shadow-2xl animate-float-slow"
-            />
+            <div className="absolute inset-4 rounded-2xl blur-2xl opacity-30" style={{ background: 'hsl(148 45% 35%)' }} />
+            <div className="relative rounded-2xl overflow-hidden border border-border shadow-2xl animate-float-slow">
+              <img
+                src={HERO_IMG}
+                alt="Нейро-расстановки — метод работы с подсознанием"
+                className="w-full object-cover"
+              />
+              {/* Overlay caption */}
+              <div className="absolute bottom-0 left-0 right-0 px-6 py-5"
+                style={{ background: 'linear-gradient(to top, rgba(5,18,10,0.92), transparent)' }}>
+                <p className="text-xs uppercase tracking-widest font-semibold" style={{ color: GOLD }}>
+                  Системные расстановки
+                </p>
+                <p className="text-sm text-foreground/80 mt-0.5">Работа с нейронными моделями и символами</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ABOUT / ДЛЯ КОГО */}
+      {/* Divider */}
+      <div className="gold-line opacity-40" />
+
+      {/* ABOUT */}
       <section id="about" className="py-20 md:py-28">
         <div className="container">
-          <div className="max-w-2xl">
-            <span className="text-primary font-semibold text-sm uppercase tracking-widest">Для кого</span>
+          <div className="max-w-3xl mb-14">
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: GOLD }}>Для кого</p>
             <h2 className="mt-3 font-display font-extrabold text-3xl md:text-4xl tracking-tight">
               Суть метода — менять жизнь через подсознание
             </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
+            <p className="mt-5 text-muted-foreground leading-relaxed">
               Нейро-расстановки работают с символами и метафорами, основанными на внутреннем
               восприятии клиента. Они помогают выявить внутренние конфликты, установки и
-              бессознательные убеждения — и привести жизнь к балансу.
+              бессознательные убеждения — и привести финансы, здоровье и отношения к балансу.
             </p>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5 mb-8">
             {[
-              { icon: 'Rocket', title: 'Тем, кто начинает', text: 'Хочет помогать людям и стать наставником, находя лёгкие выходы из трудных ситуаций.' },
-              { icon: 'HeartHandshake', title: 'Практикующим', text: 'Психологам и специалистам, желающим расширить инструментарий новым методом.' },
-              { icon: 'TrendingUp', title: 'Для роста', text: 'Тем, кто хочет гармонизировать финансы, здоровье, отношения и реализацию.' },
+              { icon: 'Rocket', title: 'Начинающим', text: 'Хотите помогать людям и стать наставником, находя лёгкие выходы из трудных ситуаций.' },
+              { icon: 'HeartHandshake', title: 'Практикующим', text: 'Психологам, коучам и специалистам, желающим освоить новый эффективный инструмент.' },
+              { icon: 'TrendingUp', title: 'Для роста', text: 'Тем, кто хочет выровнять баланс в финансах, здоровье, отношениях и реализации.' },
             ].map((c) => (
-              <div key={c.title} className="rounded-2xl border border-border p-7 bg-card hover:border-primary/40 transition-colors">
-                <span className="grid place-items-center w-12 h-12 rounded-xl bg-accent text-primary mb-5">
-                  <Icon name={c.icon} size={24} />
+              <div key={c.title}
+                className="rounded-sm border border-border p-7 bg-card hover:border-primary/50 transition-colors">
+                <span className="grid place-items-center w-11 h-11 rounded-sm bg-primary/10 text-primary mb-5 border border-primary/20">
+                  <Icon name={c.icon} size={22} />
                 </span>
-                <h3 className="font-display font-bold text-xl">{c.title}</h3>
-                <p className="mt-2 text-muted-foreground">{c.text}</p>
+                <h3 className="font-display font-bold text-lg mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {benefits.map((b) => (
-              <div key={b.text} className="flex items-start gap-3 rounded-xl bg-secondary/60 p-5">
-                <Icon name={b.icon} size={22} className="text-primary shrink-0 mt-0.5" />
-                <span className="text-sm font-medium">{b.text}</span>
+              <div key={b.text} className="flex items-start gap-3 border border-border rounded-sm bg-card p-4">
+                <Icon name={b.icon} size={18} className="text-primary shrink-0 mt-0.5" />
+                <span className="text-sm text-muted-foreground">{b.text}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="gold-line opacity-40" />
+
       {/* PROGRAM */}
-      <section id="program" className="py-20 md:py-28 bg-secondary/40">
+      <section id="program" className="py-20 md:py-28 bg-secondary/50">
         <div className="container">
           <div className="max-w-2xl mb-12">
-            <span className="text-primary font-semibold text-sm uppercase tracking-widest">Программа</span>
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: GOLD }}>Программа курса</p>
             <h2 className="mt-3 font-display font-extrabold text-3xl md:text-4xl tracking-tight">
               8 недель — от теории до уверенной практики
             </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Индивидуальные онлайн-занятия: осваиваем принципы работы с символами, тренируем
-              диагностику и коррекцию состояний клиента.
+            <p className="mt-5 text-muted-foreground leading-relaxed">
+              Индивидуальные онлайн-занятия: осваиваем принципы работы с символами,
+              тренируем диагностику и коррекцию состояний клиента.
             </p>
           </div>
 
-          <Accordion type="single" collapsible defaultValue="item-0" className="space-y-4">
+          <Accordion type="single" collapsible defaultValue="item-0" className="space-y-3">
             {weeks.map((w, i) => (
               <AccordionItem
                 key={w.n}
                 value={`item-${i}`}
-                className="border border-border rounded-2xl bg-card px-6 data-[state=open]:border-primary/50 data-[state=open]:shadow-lg transition-all"
+                className="border border-border rounded-sm bg-card px-6 data-[state=open]:border-primary/40 transition-all"
               >
                 <AccordionTrigger className="hover:no-underline py-5">
                   <div className="flex items-center gap-5 text-left">
-                    <span className="font-display font-extrabold text-2xl text-primary/40">{w.n}</span>
-                    <span className="font-display font-bold text-base md:text-lg">{w.title}</span>
+                    <span className="font-display font-extrabold text-xl shrink-0" style={{ color: GOLD + 'aa' }}>
+                      {w.n}
+                    </span>
+                    <span className="font-display font-semibold text-base text-foreground">{w.title}</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="pb-6">
-                  <ul className="space-y-3 pl-1">
+                  <ul className="space-y-2.5 pl-1">
                     {w.points.map((p) => (
-                      <li key={p} className="flex items-start gap-3 text-muted-foreground">
-                        <Icon name="Check" size={18} className="text-primary shrink-0 mt-1" />
+                      <li key={p} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <Icon name="ChevronRight" size={16} className="text-primary shrink-0 mt-0.5" />
                         <span>{p}</span>
                       </li>
                     ))}
@@ -272,58 +332,64 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA BANNER */}
       <section className="py-20 md:py-28">
         <div className="container">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-primary text-primary-foreground px-8 py-14 md:px-16 md:py-20 text-center">
-            <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-white/10 blur-2xl" />
-            <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-white/10 blur-2xl" />
-            <div className="relative">
-              <h2 className="font-display font-extrabold text-3xl md:text-5xl tracking-tight">
-                Начните помогать людям — и себе
-              </h2>
-              <p className="mt-5 text-lg md:text-xl text-primary-foreground/85 max-w-2xl mx-auto">
-                Самая важная цель курса — научить вас сразу практиковать и внедрять знания.
-                Оставьте заявку, и мы подберём удобный формат старта.
-              </p>
-              <Button
-                onClick={() => scrollTo('contacts')}
-                size="lg"
-                variant="secondary"
-                className="mt-9 rounded-full px-10 text-base font-semibold hover-scale"
-              >
-                Записаться на обучение
-              </Button>
-            </div>
+          <div className="relative overflow-hidden rounded-sm border bg-card px-8 py-14 md:px-16 md:py-20 text-center"
+            style={{ borderColor: GOLD + '40' }}>
+            {/* Corner decorations */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2" style={{ borderColor: GOLD }} />
+            <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2" style={{ borderColor: GOLD }} />
+            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2" style={{ borderColor: GOLD }} />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2" style={{ borderColor: GOLD }} />
+
+            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: GOLD }}>
+              Начните помогать людям
+            </p>
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl tracking-tight">
+              Практика — с первого занятия.<br />Сертификат — по итогам курса.
+            </h2>
+            <p className="mt-5 text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Самая важная цель курса — научить вас сразу внедрять знания.
+              Оставьте заявку, и мы подберём удобный формат старта.
+            </p>
+            <button
+              onClick={() => scrollTo('contacts')}
+              className="mt-9 inline-block px-12 py-4 text-sm font-bold tracking-wide rounded-sm transition-opacity hover:opacity-90"
+              style={{ background: GOLD, color: '#1a1a1a' }}
+            >
+              Записаться на обучение
+            </button>
           </div>
         </div>
       </section>
 
       {/* CONTACTS */}
-      <section id="contacts" className="py-20 md:py-28 bg-secondary/40">
-        <div className="container grid lg:grid-cols-2 gap-12 items-start">
+      <section id="contacts" className="py-20 md:py-28 bg-secondary/50">
+        <div className="container grid lg:grid-cols-2 gap-14 items-start">
           <div>
-            <span className="text-primary font-semibold text-sm uppercase tracking-widest">Контакты</span>
-            <h2 className="mt-3 font-display font-extrabold text-3xl md:text-4xl tracking-tight">
-              Остались вопросы? Напишите нам
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GOLD }}>Контакты</p>
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl tracking-tight">
+              Остались вопросы?<br />Напишите нам
             </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
+            <p className="mt-5 text-muted-foreground leading-relaxed">
               Расскажем подробнее о методе, формате и старте ближайшего потока обучения.
             </p>
-            <div className="mt-8 space-y-4">
+            <div className="mt-10 space-y-5">
               {[
                 { icon: 'Users', label: 'ВКонтакте', value: 'vk.com/abramova_garmony', href: 'https://vk.ru/abramova_garmony' },
                 { icon: 'Send', label: 'Telegram', value: '@neuro_rasstanovki', href: '#' },
                 { icon: 'Mail', label: 'Email', value: 'info@neuro-method.ru', href: '#' },
                 { icon: 'Phone', label: 'Телефон', value: '+7 (900) 000-00-00', href: '#' },
               ].map((c) => (
-                <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                  <span className="grid place-items-center w-11 h-11 rounded-xl bg-accent text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Icon name={c.icon} size={20} />
+                <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-4 group">
+                  <span className="grid place-items-center w-11 h-11 rounded-sm border border-border bg-card text-primary group-hover:border-primary/50 transition-colors">
+                    <Icon name={c.icon} size={19} />
                   </span>
                   <div>
-                    <div className="text-sm text-muted-foreground">{c.label}</div>
-                    <div className="font-semibold group-hover:text-primary transition-colors">{c.value}</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">{c.label}</div>
+                    <div className="font-semibold text-sm group-hover:text-primary transition-colors mt-0.5">{c.value}</div>
                   </div>
                 </a>
               ))}
@@ -332,50 +398,55 @@ const Index = () => {
 
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="rounded-3xl bg-card border border-border p-8 shadow-sm space-y-5"
+            className="rounded-sm border border-border bg-card p-8 space-y-5"
           >
             <div>
-              <label className="text-sm font-medium">Имя</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Имя</label>
               <input
                 type="text"
                 placeholder="Как к вам обращаться?"
-                className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 outline-none focus:border-primary transition-colors"
+                className="mt-2 w-full rounded-sm border border-input bg-secondary/50 px-4 py-3 text-sm outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Контакт</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Контакт</label>
               <input
                 type="text"
                 placeholder="Телефон, Telegram или email"
-                className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 outline-none focus:border-primary transition-colors"
+                className="mt-2 w-full rounded-sm border border-input bg-secondary/50 px-4 py-3 text-sm outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Сообщение</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Сообщение</label>
               <textarea
                 rows={4}
                 placeholder="Ваш вопрос или пожелание"
-                className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 outline-none focus:border-primary transition-colors resize-none"
+                className="mt-2 w-full rounded-sm border border-input bg-secondary/50 px-4 py-3 text-sm outline-none focus:border-primary transition-colors resize-none placeholder:text-muted-foreground/50"
               />
             </div>
-            <Button type="submit" size="lg" className="w-full rounded-full text-base">
+            <button
+              type="submit"
+              className="w-full py-3.5 text-sm font-bold tracking-wide rounded-sm transition-opacity hover:opacity-90"
+              style={{ background: GOLD, color: '#1a1a1a' }}
+            >
               Отправить заявку
-            </Button>
+            </button>
           </form>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-10">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2 font-display font-bold text-foreground">
-            <Icon name="Brain" size={18} className="text-primary" />
-            Нейро-расстановки
+      <footer className="border-t border-border py-8">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground uppercase tracking-wider">
+          <div className="flex items-center gap-2 font-display font-bold text-sm text-foreground">
+            <Icon name="Brain" size={16} className="text-primary" />
+            Нейро<span style={{ color: GOLD }}>расстановки</span>
           </div>
-          <a href="https://vk.ru/abramova_garmony" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-primary transition-colors">
-            <Icon name="Users" size={16} /> Мы ВКонтакте
+          <a href="https://vk.ru/abramova_garmony" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-foreground transition-colors">
+            <Icon name="Users" size={14} /> Мы ВКонтакте
           </a>
-          <span>© 2026 Метод Ирины Абрамовой. Все права защищены.</span>
+          <span>© 2026 Метод Ирины Абрамовой</span>
         </div>
       </footer>
     </div>
